@@ -1,19 +1,8 @@
 #coding:utf-8
 
-import os
-
-#过滤警告
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data
 
-import gpuManager as gm
-
-#对于 windows 系统
-mnist = input_data.read_data_sets("E:\\DataScience\\deeplearning\\data", one_hot=True)
-#对于 ubuntu 服务器
-#mnist = input_data.read_data_sets("/data/tdr/deeplearning/data", one_hot=True)
+from com.baseNet import BaseNet
 
 #超参数
 learning_rate = 0.1
@@ -24,17 +13,19 @@ display_step = 100
 #网络参数
 n_hidden_1 = 256 # 1st layer number of neurons
 n_hidden_2 = 256 # 2nd layer number of neurons
-num_input = mnist.train.images.shape[1]
-num_classes = mnist.train.labels.shape[1]
 
 #定义模型
-def neural_net(x):
-    with tf.variable_scope("neural_net"):
+def neural_net(x, num_classes):
+    name = "neural_net"
+    with tf.variable_scope(name):
         x = tf.layers.dense(x, n_hidden_1)
         x = tf.layers.dense(x, n_hidden_2)
         x = tf.layers.dense(x, num_classes)
-    return x
+    return x, name
 
+bn = BaseNet(neural_net, learning_rate, num_steps, batch_size, display_step)
+bn.train()
+"""
 #定义输入输出占位符
 x = tf.placeholder(tf.float32, shape=[None, num_input])
 y_ = tf.placeholder(tf.float32, shape=[None, num_classes])
@@ -98,3 +89,4 @@ with sel_device:
                                         y_: mnist.test.labels}))
 #print(num_input, num_classes)
 #print(gm.check_gpus())
+"""
