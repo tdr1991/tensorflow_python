@@ -86,7 +86,7 @@ X_pca = decomposition.TruncatedSVD(n_components=2).fit_transform(X)
 plot_embedding(X_pca,
                "Principal Components projection of the digits (time %.2fs)" %
                (time() - t0))
-
+"""
 #----------------------------------------------------------------------
 # Projection on to the first 2 linear discriminant components
 
@@ -198,7 +198,7 @@ X_se = embedder.fit_transform(X)
 plot_embedding(X_se,
                "Spectral embedding of the digits (time %.2fs)" %
                (time() - t0))
-
+"""
 #----------------------------------------------------------------------
 # t-SNE embedding of the digits dataset
 print("Computing t-SNE embedding")
