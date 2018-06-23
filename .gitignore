@@ -1,3 +1,8 @@
 /.vscode
 code/__pycache__
 code/com/__pycache__
+test.py
+notebook/2-BasicModels/.ipynb_checkpoints
+notebook/3-NeuralNetworks/3.1-Supervised/.ipynb_checkpoints
+notebook/3-NeuralNetworks/3.1-Supervised/_pycache__
+img/ls
